@@ -1,0 +1,48 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: "sudo npm install -g npm@latest"
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      # CI should auto add CI=true for treating warnings as errors
+      - run: npm run build
+  deploy:staging:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: echo "deploy:staging completed"
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - hold_for_approval:
+          type: approval
+          requires:
+            - build
+      - deploy:staging:
+          requires:
+            - hold_for_approval
