@@ -34,15 +34,10 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run: echo "deploy:staging completed"
+      - run: npx semantic-release
 workflows:
   version: 2
   build_and_deploy:
     jobs:
       - build
-      - hold_for_approval:
-          type: approval
-          requires:
-            - build
-      - deploy:staging:
-          requires:
-            - hold_for_approval
+      - deploy:staging
