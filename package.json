@@ -37,8 +37,8 @@
   },
   "release": {
     "branches": [
-      "master"
+      "production"
     ],
-    "tagFormat": "${version}"
+    "tagFormat": "v${version}"
   }
 }
