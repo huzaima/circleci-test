@@ -40,9 +40,9 @@ workflows:
   build_and_deploy:
     jobs:
       - build
-      - deploy:staging
+      - deploy:staging:
         requires:
           - build
         filters:
-            branches:
-              only: master
+          branches:
+            only: master
