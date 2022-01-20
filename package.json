@@ -15,7 +15,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +51,9 @@
     ]
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.1"
+    "@commitlint/cli": "^16.1.0",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "husky": "^7.0.0"
   }
 }
