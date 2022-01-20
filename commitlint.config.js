@@ -13,7 +13,6 @@ module.exports = {
   extends: ["@commitlint/config-conventional"],
   rules: {
     "body-case": [2, "always", supportedCase],
-    // "header-case": [2, "always", supportedCase],
     "scope-case": [2, "always", supportedCase],
     "subject-case": [2, "always", supportedCase],
     "type-case": [2, "always", "lower-case"],
