@@ -41,3 +41,8 @@ workflows:
     jobs:
       - build
       - deploy:staging
+        requires:
+          - build
+        filters:
+            branches:
+              only: master
