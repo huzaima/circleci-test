@@ -8,7 +8,7 @@ jobs:
         steps:
           - run: echo "Hello"
     build2:
-      if: ${{ vars.ABC }} == 'hello'
+      if: github.ref_name == 'hello'
       runs-on: ubuntu-latest
       steps:
         - run: echo "Hello"
