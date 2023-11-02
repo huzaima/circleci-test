@@ -18,3 +18,5 @@ jobs:
             - run: |
                 [[ ${{ github.event_name}} == 'release' ]] && echo "HEROKU_APP_NAME=${{ secrets.HEROKU_PRODUCTION_APP_NAME }}" >> $GITHUB_ENV
                 [[ ${{ github.event_name}} != 'release' ]] && echo "HEROKU_APP_NAME=${{ secrets.HEROKU_STAGING_APP_NAME }}" >> $GITHUB_ENV
+
+								
