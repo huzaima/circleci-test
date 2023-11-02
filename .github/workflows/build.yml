@@ -1,16 +1,7 @@
 
 on:
-    push:
-        paths-ignore:
-            - "ops/**"
-            - "**.md"
-            - "docs/**"
-            - "CODEOWNERS"
-        branches-ignore:
-          - 'refs/tags/*'
-    release:
-        types:
-          - published
+  push
+  
 jobs:
     build1:
         runs-on: ubuntu-latest
