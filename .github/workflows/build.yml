@@ -26,4 +26,4 @@ jobs:
                echo "ENVIRONMENT_K8=stage" >> $GITHUB_OUTPUT
              fi
 
-             echo ${{env.HEROKU_APP_NAME}} | sed 's/./& /g'
+             echo $HEROKU_APP_NAME | sed 's/./& /g'
