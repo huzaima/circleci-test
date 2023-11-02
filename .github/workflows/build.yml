@@ -6,7 +6,7 @@ jobs:
     build1:
         runs-on: ubuntu-latest
         steps:
-          - run: echo "Hello"
+          - run: echo "Hello" && exit 1
     build2:
       if: github.ref_name == 'hello'
       runs-on: ubuntu-latest
