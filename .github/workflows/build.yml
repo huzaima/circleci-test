@@ -16,5 +16,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - run: |
-                [[ ${{ github.event_name}} == 'release' ]] && echo "HEROKU_APP_NAME=${{ secrets.HEROKU_PRODUCTION_APP_NAME }}" >> $GITHUB_ENV
-                [[ ${{ github.event_name}} != 'release' ]] && echo "HEROKU_APP_NAME=${{ secrets.HEROKU_STAGING_APP_NAME }}" >> $GITHUB_ENV
+								if [[ ${{ github.event_name }} == 'release' ]]; then
+									echo "HEROKU_APP_NAME=${{ secrets.HEROKU_PRODUCTION_APP_NAME }}" >> $GITHUB_ENV
+								else
+									echo "HEROKU_APP_NAME=${{ secrets.HEROKU_STAGING_APP_NAME }}" >> $GITHUB_ENV
+								fi
+                # [[ ${{ github.event_name}} == 'release' ]] && 
+                # [[ ${{ github.event_name}} != 'release' ]] && echo "HEROKU_APP_NAME=${{ secrets.HEROKU_STAGING_APP_NAME }}" >> $GITHUB_ENV
