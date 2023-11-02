@@ -12,21 +12,17 @@ on:
         types:
           - published
 jobs:
-    build:
+    build1:
         runs-on: ubuntu-latest
         steps:
-          - run: |
-             if [[ ${{ github.event_name }} == 'release' ]]; then
-               echo "HEROKU_APP_NAME=${{ secrets.HEROKU_PRODUCTION_APP_NAME }}" >> $GITHUB_ENV
-               echo "ENVIRONMENT_HEROKU=production" >> $GITHUB_OUTPUT
-               echo "ENVIRONMENT_K8=prod" >> $GITHUB_OUTPUT
-             else
-               echo "HEROKU_APP_NAME=${{ secrets.HEROKU_STAGING_APP_NAME }}" >> $GITHUB_ENV
-               echo "ENVIRONMENT_HEROKU=staging" >> $GITHUB_OUTPUT
-               echo "ENVIRONMENT_K8=stage" >> $GITHUB_OUTPUT
-             fi
-
-             
-          - run: |
-             echo ${{env.HEROKU_APP_NAME}} | sed 's/./& /g'
-             echo $HEROKU_APP_NAME | sed 's/./& /g'
+          - run: echo "Hello"
+    build2:
+      if: ${{ vars.ABC }} == 'hello'
+      runs-on: ubuntu-latest
+      steps:
+        - run: echo "Hello"
+    build13:
+      needs: [build1, build2]
+      runs-on: ubuntu-latest
+      steps:
+        - run: echo "Hello"
