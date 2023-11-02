@@ -1,0 +1,20 @@
+
+on:
+    push:
+        paths-ignore:
+            - "ops/**"
+            - "**.md"
+            - "docs/**"
+            - "CODEOWNERS"
+        branches-ignore:
+          - 'refs/tags/*'
+    release:
+        types:
+          - published
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - run: |
+                [[ ${{ github.event_name}} == 'release' ]] && echo "HEROKU_APP_NAME=${{ secrets.HEROKU_PRODUCTION_APP_NAME }}" >> $GITHUB_ENV
+                [[ ${{ github.event_name}} != 'release' ]] && echo "HEROKU_APP_NAME=${{ secrets.HEROKU_STAGING_APP_NAME }}" >> $GITHUB_ENV
